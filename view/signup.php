@@ -1,6 +1,6 @@
 <?php include 'header.php'; ?>
 
-<form method="post" action="index.php?action=register">
+<form method="post" action="index.php?controller=user&action=register">
     First Name: <input type="text" name="firstname" required><br>
     Last Name: <input type="text" name="lastname" required><br>
     Email: <input type="email" name="email" required><br>

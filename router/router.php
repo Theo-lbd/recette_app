@@ -1,45 +1,27 @@
 <?php
-    class Router {
-        private $controller;
-    
-        public function __construct($controller) {
-            $this->controller = $controller;
-        }
-    
-        public function handleRequest() {
-            $action = $_GET['action'] ?? 'home';
-    
-            switch ($action) {
-                case 'home':
-                default:
-                    $this->controller->showHome();
-                    break;
-                case 'add':
-                    $this->controller->showAddRecetteForm();
-                    break;
-                case 'delete':
-                    $id = $_GET['id'] ?? null;
-                    if ($id) {
-                        $this->controller->deleteRecette($id);
-                    } else {
-                        echo "ID de recette non spécifié.";
-                    }
-                    break;
-                case 'register':
-                    $this->controller->register();
-                    break;
-                case 'login':
-                    $this->controller->login();
-                    break;
-                case 'logout':
-                    $this->controller->logout();
-                    break;
-                case 'my_recipes':
-                    $this->controller->showMyRecipes();
-                    break;
-                // Ajoutez d'autres cas au besoin...
+class Router {
+    private $db;
+
+    public function __construct($db) {
+        $this->db = $db;
+    }
+
+    public function handleRequest() {
+        $controllerName = $_GET['controller'] ?? 'HomePage';
+        $actionName = $_GET['action'] ?? 'showHome';  // Default to showHome action
+
+        $controllerClass = ucfirst($controllerName) . "Controller";
+
+        if (class_exists($controllerClass)) {
+            $controller = new $controllerClass($this->db);  // Pass the database connection to the controller
+
+            if (method_exists($controller, $actionName)) {
+                $controller->$actionName();
+            } else {
+                echo "Action not found: " . htmlspecialchars($actionName);
             }
+        } else {
+            echo "Controller not found: " . htmlspecialchars($controllerClass);
         }
     }
-    
-    
+}

@@ -11,12 +11,12 @@
         <ul>
             <li><a href="index.php">Accueil</a></li>
             <?php if (isset($_SESSION['user_id'])): ?>
-                <li><a href="index.php?action=add">Ajouter une recette</a></li>
-                <li><a href="index.php?action=my_recipes">Mes recettes</a></li>
-                <li><a href="index.php?action=logout">Logout</a></li>
+                <li><a href="index.php?controller=recette&action=add">Ajouter une recette</a></li>
+                <li><a href="index.php?controller=recette&action=my_recipes">Mes recettes</a></li>
+                <li><a href="index.php?controller=user&action=logout">Logout</a></li>
             <?php else: ?>
-                <li><a href="index.php?action=login">Login</a></li>
-                <li><a href="index.php?action=register">Sign Up</a></li>
+                <li><a href="index.php?controller=user&action=login">Login</a></li>
+                <li><a href="index.php?controller=user&action=register">Sign Up</a></li>
             <?php endif; ?>
         </ul>
 
