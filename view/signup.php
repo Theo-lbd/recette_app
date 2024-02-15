@@ -1,9 +1,15 @@
-<?php include 'header.php'; ?>
+<?php include './admin/view/header.php'; ?>
 
 <main>
     <section>
         <h2>Inscription</h2>
-
+        <?php if (!empty($errors)): ?>
+            <div class="errors">
+                <?php foreach ($errors as $error): ?>
+                    <p><?php echo htmlspecialchars($error); ?></p>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
         <form method="post" action="index.php?controller=user&action=register">
             <div>
                 <label for="firstname">Prénom :</label>

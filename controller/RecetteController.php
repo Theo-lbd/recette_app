@@ -267,17 +267,24 @@ class RecetteController {
             $lastname = $_POST['lastname'] ?? '';
             $email = $_POST['email'] ?? '';
             $password = $_POST['password'] ?? '';
-                
-            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-            $wasCreated = $this->userModel->createUser($firstname, $lastname, $email, $hashed_password);
-            
-            if ($wasCreated) {
-                header("Location: index.php?action=login");
-                exit;
+            $confirm_password = $_POST['confirm_password'] ?? ''; // Récupérer la confirmation du mot de passe
+    
+            // Vérifier si les mots de passe correspondent
+            if ($password !== $confirm_password) {
+                $errors[] = 'Les mots de passe ne correspondent pas.';
             } else {
-                $errors[] = 'Cet e-mail est déjà enregistré. Veuillez en choisir un autre.';
+                $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+                $wasCreated = $this->userModel->createUser($firstname, $lastname, $email, $hashed_password);
+    
+                if ($wasCreated) {
+                    header("Location: index.php?action=login");
+                    exit;
+                } else {
+                    $errors[] = 'Cet e-mail est déjà enregistré. Veuillez en choisir un autre.';
+                }
             }
         }
+    
         include "view/signup.php";
     }
     
@@ -556,4 +563,11 @@ class RecetteController {
         include 'view/showMessages.php'; 
     }
     
+    public function showPolitiqueDeConfidentialite() {
+        include 'view/politiqueConfidentialite.php';
+    }
+
+    public function showConditionsDUtilisation() {
+        include 'view/conditionUtilisation.php';
+    }
 }

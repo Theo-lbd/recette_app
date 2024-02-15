@@ -1,0 +1,33 @@
+.cookie-consent-container {
+    position: fixed;
+    bottom: 0;
+    transform: translateY(100%); // Commence caché en glissant vers le bas
+    width: 100%;
+    background-color: $grey-light;
+    padding: $card-padding;
+    text-align: center;
+    z-index: 1000;
+    transition: transform 0.5s ease, opacity 0.5s ease; // Transition sur transform et opacity
+    opacity: 0; // Commence avec l'opacité à 0
+  
+    &.active {
+      transform: translateY(0); // Apparaît en glissant vers le haut
+      opacity: 1; // Pleinement visible quand actif
+    }
+  }
+  
+  .cookie-consent-content p {
+    margin: 0;
+    padding: 0;
+    @include font-properties($font-size-sm);
+  }
+  
+  .button {
+    @include card-button;
+    margin-top: $spacing-unit * 1.5;
+  
+    &:hover {
+      background-color: $button-hover-bg-color; // Utilisez la variable définie pour la couleur de survol
+    }
+  }
+  

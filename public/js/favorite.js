@@ -1,3 +1,4 @@
+// Ce script gère l'ajout et la suppression des recettes favorites de manière asynchrone.
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.favorite-icon').forEach(function(icon) {
         icon.addEventListener('click', function() {

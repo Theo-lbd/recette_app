@@ -36,6 +36,8 @@ class Router {
             'submitContactForm' => 'submitContactForm',
             'contactSuccess' => 'showContactSuccess',
             'showMessages' => 'showMessages',
+            'politique-de-confidentialite' => 'showPolitiqueDeConfidentialite',
+            'conditions-dutilisation' => 'showConditionsDUtilisation',
 
         ];
 

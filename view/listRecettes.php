@@ -5,3 +5,4 @@
 <?php else: ?>
     <p>Aucune recette à afficher pour le moment.</p>
 <?php endif; ?>
+

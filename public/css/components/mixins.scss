@@ -31,3 +31,7 @@ border: 1px solid $border-color;
 border-radius: $card-border-radius;
 box-sizing: border-box;
 }
+
+@mixin box-shadow($shadow) {
+  box-shadow: $shadow;
+}
