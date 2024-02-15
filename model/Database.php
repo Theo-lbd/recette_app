@@ -1,10 +1,21 @@
 <?php
+
+$env = parse_ini_string(file_get_contents(__DIR__ . '/../.env'), false, INI_SCANNER_RAW);
+$_ENV = array_merge($_ENV, $env);
+
 class Database {
-    private $host = "localhost";
-    private $db_name = "db_recettes";
-    private $username = "root";
-    private $password = "";
+    private $host;
+    private $db_name;
+    private $username;
+    private $password;
     public $conn;
+
+    public function __construct() {
+        $this->host = $_ENV['DB_HOST'];
+        $this->db_name = $_ENV['DB_NAME'];
+        $this->username = $_ENV['DB_USER'];
+        $this->password = $_ENV['DB_PASS'];
+    }
 
     public function getConnection() {
         $this->conn = null;

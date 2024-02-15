@@ -1,0 +1,25 @@
+@import 'variables';
+
+.search-container {
+  position: relative;
+
+  .search-dropdown {
+    position: absolute;
+    background-color: $white;
+    border: 1px solid $border-color;
+    z-index: 1000;
+    width: 100%;
+    box-shadow: 0px 8px 16px rgba($black, 0.2);
+
+    a {
+      padding: $card-padding;
+      text-decoration: none;
+      display: block;
+      color: $primary-color;
+
+      &:hover {
+        background-color: $grey-light;
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+// Importation des variables et mixins communs
+@import 'variables';
+@import 'mixins';
+
+.messages {
+    display: flex;
+    flex-direction: column;
+    gap: $card-margin;
+    align-items: center;
+
+    .message {
+        background: $white;
+        border: 1px solid $border-color;
+        border-radius: $card-border-radius;
+        padding: $card-padding;
+        width: 100%;
+        max-width: 600px;
+        box-shadow: 0 2px 5px rgba($black, 0.1);
+
+        p {
+            color: $primary-color;
+            margin: $card-margin;
+
+            strong {
+                color: $secondary-color;
+            }
+        }
+
+        .reply {
+            background: lighten($primary-color, 40%);
+            padding: $card-padding;
+            margin-top: $card-margin;
+            border-left: 4px solid darken($primary-color, 10%);
+        }
+        
+    }
+}

@@ -1,0 +1,67 @@
+// admin-card.scss
+@import 'variables';
+@import 'mixins';
+
+.admin-dashboard {
+  @include transition(all);
+  display: flex;
+  flex-direction: column;
+  gap: $card-margin;
+  align-items: center;
+  padding-top: 50px;
+  justify-content: center;
+  align-items: stretch;
+  .card {
+    @include transition(all);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid $border-color;
+    border-radius: $card-border-radius;
+    padding: $card-padding;
+    width: 100%;
+    text-align: center;
+    margin-bottom: $card-margin;
+
+    .card-icon img {
+      width: $image-size-mobile;
+      height: auto;
+      margin: 0 auto;
+    }
+
+    .card-content h3 {
+      @include font-properties(16px, 700);
+      color: $black;
+    }
+
+    .card-content p {
+      @include font-properties(14px, 400);
+      color: $grey-dark;
+    }
+
+    .card-btn {
+      @include card-button;
+    }
+  }
+}
+
+@media (min-width: $breakpoint-sm) {
+  .admin-dashboard {
+    flex-direction: row;
+    flex-wrap: wrap;
+    .card {
+      width: calc(50% - 20px);
+      .card-icon img {
+        width: $image-size-tablet;
+      }
+    }
+  }
+}
+
+@media (min-width: $breakpoint-md) {
+  .admin-dashboard {
+    .card {
+      width: calc(33.333% - 20px);
+    }
+  }
+}

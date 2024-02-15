@@ -1,0 +1,88 @@
+@import 'variables';
+@import 'mixins';
+
+.recette-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid $border-color;
+  border-radius: $card-border-radius;
+  margin: $card-margin;
+  background-color: $white;
+  align-items: stretch;
+
+  .card-header {
+    .card-title {
+      @include font-properties(16px, 700);
+      color: $black;
+      margin-bottom: $card-margin;
+    }
+  }
+
+  .card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: $card-padding;
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      aspect-ratio: 16 / 9;
+      max-height: 200px;
+    }
+
+    .card-time {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      @include font-properties(12px, 500);
+      margin-top: $card-margin;
+    }
+
+    ul {
+      list-style-type: none;
+      margin-top: $card-margin;
+
+      li {
+        margin-bottom: 5px;
+      }
+    }
+  }
+
+  .card-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $card-margin;
+    padding: $card-padding;
+
+    a {
+      @include card-button;
+    }
+  }
+
+  .favorite-icon {
+    cursor: pointer;
+    font-size: 24px;
+    color: #ccc;
+
+    &:hover,
+    &.favoris {
+      color: #ff6161;
+    }
+  }
+}
+
+@media (min-width: $breakpoint-sm) {
+  .recette-card {
+    width: calc(50% - #{$card-margin});
+  }
+}
+
+@media (min-width: $breakpoint-md) {
+  .recette-card {
+    width: calc(25% - #{$card-margin});
+  }
+}

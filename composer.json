@@ -1,0 +1,12 @@
+{
+    "name": "theol/recettes-app",
+    "authors": [
+        {
+            "name": "Theo-lbd",
+            "email": "theo.labadie@outlook.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.5"
+    }
+}

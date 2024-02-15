@@ -1,0 +1,94 @@
+// Importation des variables et mixins communs
+@import 'variables';
+@import 'mixins';
+
+article {
+    padding: $card-padding;
+    background: $white;
+    color: $primary-color;
+    font-family: 'Raleway', sans-serif;
+
+    h3 {
+        @include font-properties(1.5em, 700);
+        margin-bottom: $card-margin;
+    }
+
+    img.card-avatar {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin-bottom: $card-margin;
+        object-fit: cover;
+        aspect-ratio: 16 / 9;
+    }
+
+    .icone_card {
+        margin-right: 5px;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+
+        li {
+            margin-bottom: 5px;
+        }
+    }
+
+    .card-footer {
+        margin-top: $card-margin;
+    }
+
+    form {
+        margin-top: $card-margin;
+
+        textarea {
+            width: 100%;
+            padding: $card-padding;
+            margin-bottom: $card-margin;
+            border: 1px solid $border-color;
+            border-radius: $card-border-radius;
+        }
+    }
+
+    .commentaire {
+        padding: $card-padding 0;
+        border-top: 1px solid $secondary-color;
+
+        p {
+            margin: 5px 0;
+        }
+    }
+}
+
+@media (min-width: $breakpoint-sm) {
+    article {
+        padding: $card-padding * 1.5;
+
+        img.card-avatar {
+            float: left;
+            margin-right: $card-margin;
+            width: 50%;
+        }
+
+        .card-time {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: $card-margin;
+        }
+    }
+}
+
+@media (min-width: $breakpoint-md) {
+    article {
+        padding: $card-padding * 2;
+
+        img.card-avatar {
+            width: 40%;
+        }
+
+        .card-footer, .commentaire {
+            clear: both;
+        }
+    }
+}

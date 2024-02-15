@@ -1,0 +1,70 @@
+// Importation des variables et mixins communs
+@import 'variables';
+@import 'mixins';
+
+// Conteneur pour les filtres et la recherche
+.controls-container {
+    @include transition(all);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $card-margin;
+    margin-bottom: $card-margin;
+}
+
+// Conteneur pour les boutons de filtrage
+.filters-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: $card-margin;
+    margin-top: $card-margin;
+}
+
+// Boutons de filtrage
+.filter-btn {
+    @include card-button;
+    margin: $card-margin;
+}
+
+// Conteneur de recherche
+#search-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 500px;
+    margin-top: $card-padding;
+}
+
+// Champ de saisie de recherche
+#search-input {
+    width: 100%;
+    padding: $card-padding;
+    border: 1px solid $border-color;
+    border-radius: $card-border-radius;
+    margin-bottom: $card-margin;
+}
+
+// Résultats de la recherche
+#search-results {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    background-color: $white;
+    border: 1px solid $border-color;
+    border-top: none;
+    z-index: 10;
+    display: none;
+
+    &.search-dropdown {
+        display: block;
+    }
+}
+
+// Media queries pour les écrans de bureau
+@media (min-width: $breakpoint-md) {
+    .controls-container {
+        align-items: center;
+        justify-content: center;
+    }
+}

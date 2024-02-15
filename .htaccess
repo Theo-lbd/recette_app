@@ -1,0 +1,8 @@
+RewriteEngine On
+
+# Ne pas appliquer la règle sur les fichiers ou dossiers réels
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Réécriture de l'URL
+RewriteRule ^([a-zA-Z0-9-]+)/?$ index.php?action=$1 [L,QSA]

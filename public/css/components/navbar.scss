@@ -1,0 +1,129 @@
+// Importation des variables et mixins communs
+@import 'variables';
+@import 'mixins';
+
+.top-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: $primary-color;
+    color: $white;
+    padding: $nav-padding;
+    width: 100%;
+    nav{
+        width: 100%;
+    }
+    .admin-title-link{
+        text-decoration: none;
+        font-size: $font-size-lg;
+        color: $white;
+    }
+    .admin-title {
+        font-size: $font-size-lg;
+        margin-bottom: 0.5em;
+        text-align: center;
+        width: 100%;
+    }
+    div {
+        font-size: $font-size-lg;
+        margin-bottom: 0.5em;
+    }
+
+    .menu-button-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        cursor: pointer;
+        margin-bottom: 0.5em;
+    }
+
+    .menu-button {
+        background-color: $white;
+        height: 4px;
+        width: 30px;
+        position: relative;
+        @include transition(transform);
+        border-radius: 2px;
+
+        &::before,
+        &::after {
+            content: '';
+            background-color: $white;
+            height: 4px;
+            width: 30px;
+            position: absolute;
+            @include transition(transform);
+            border-radius: 2px;
+        }
+
+        &::before {
+            top: -8px;
+        }
+
+        &::after {
+            bottom: -8px;
+        }
+    }
+
+    #menu-toggle {
+        display: none;
+
+        &:checked + .menu-button-container .menu-button::before {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        &:checked + .menu-button-container .menu-button::after {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        &:checked ~ .menu {
+            display: flex;
+        }
+    }
+
+    .menu {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        list-style-type: none;
+        padding: 0;
+        width: 100%;
+        justify-content: center;
+        li {
+            margin: 0.5em 0;
+        }
+    }
+
+    @media (min-width: $breakpoint-sm) {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        .menu-button-container {
+            display: none;
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding-left: 0;
+
+            li {
+                margin: 0 1rem;
+            }
+        }
+    }
+
+    @media (min-width: $breakpoint-md) {
+        .menu li a {
+            padding: 0.5em 1em;
+
+            &:hover {
+                background-color: darken($primary-color, 10%);
+                border-radius: 5px;
+            }
+        }
+    }
+}

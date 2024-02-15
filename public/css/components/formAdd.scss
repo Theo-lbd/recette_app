@@ -1,0 +1,49 @@
+// Importation des variables et mixins communs
+@import 'variables';
+@import 'mixins';
+
+.form-container {
+    max-width: 600px;
+    margin: auto;
+    padding: $card-padding;
+    background: $white;
+    border-radius: $card-border-radius;
+    box-shadow: 0 2px 5px rgba($black, 0.1);
+
+    h2 {
+        text-align: center;
+        color: $primary-color;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+
+        label {
+            margin-top: $card-margin;
+        }
+
+        input[type='text'],
+        input[type='number'],
+        input[type='file'],
+        select,
+        textarea {
+            @include form-inputs;
+        }
+
+        button {
+            @include card-button;
+            margin-top: $card-margin;
+        }
+
+        .errors {
+            list-style-type: none;
+            padding: 0;
+            color: $error-color;
+        }
+
+        .errors li {
+            margin-bottom: $card-margin;
+        }
+    }
+}
