@@ -23,7 +23,9 @@ body {
   margin: 0;
   line-height: 1.6;
 }
-
+h1,h2{
+  text-align: center;
+}
 .button-a, .filter-btn {
   @include card-button;
 }
