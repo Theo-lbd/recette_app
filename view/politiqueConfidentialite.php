@@ -6,7 +6,7 @@
 
         <section>
             <h2>Introduction</h2>
-            <p>Bienvenue sur [Nom de l'application] ! Votre vie privée est de la plus haute importance pour nous. Cette politique de confidentialité a pour but de vous informer sur la manière dont nous collectons, utilisons, divulguons et protégeons vos données personnelles lorsque vous utilisez notre application.</p>
+            <p>Bienvenue sur Recette APP ! Votre vie privée est de la plus haute importance pour nous. Cette politique de confidentialité a pour but de vous informer sur la manière dont nous collectons, utilisons, divulguons et protégeons vos données personnelles lorsque vous utilisez notre application.</p>
         </section>
 
         <section>
