@@ -31,7 +31,7 @@
                     echo '<input type="text" name="ingredients[]"><br>';
                 }
                 ?>
-                <button type="button" onclick="ajouterChampIngredient()">Ajouter un ingrédient</button>
+            <button type="button" id="add-ingredient">Ajouter un ingrédient</button>
             </div>
             <div>
                 <label for="instructions">Instructions:</label>

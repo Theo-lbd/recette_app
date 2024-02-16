@@ -9,6 +9,7 @@
     <script src="/public/js/filterRecettes.js"></script>
     <script src="/public/js/favorite.js"></script>
     <script src="/public/js/cookies.js"></script>
+
 </div>
 </body>
 </html>
