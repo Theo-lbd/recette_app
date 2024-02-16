@@ -14,6 +14,7 @@
             <p>Nous collectons les informations suivantes :</p>
             <ul>
                 <li>Informations d'identification personnelle (nom, adresse email, etc.)</li>
+                <li>Labadie Théo</li>
                 <li>Préférences et intérêts liés à nos recettes</li>
                 <li>Informations de connexion et d'interaction avec l'application</li>
             </ul>
