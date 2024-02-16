@@ -23,4 +23,4 @@
         </div>
     </section>
 </main>
-<?php include "view/footer.php"; ?>
+<?php include "../view/footer.php";?>

@@ -30,4 +30,4 @@
   </section>
 </main>
 <script src="./public/js/adminReplies.js"></script>
-<?php include 'view/footer.php'; ?>
+<?php include "../view/footer.php";?>

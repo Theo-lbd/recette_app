@@ -1,4 +1,5 @@
 <?php include "view/header.php"; ?>
+
 <main>
   <section>
     <h1>Modifier la recette</h1>
@@ -9,9 +10,20 @@
             <label for="nom">Nom de la recette :</label>
             <input type="text" id="nom" name="nom" value="<?php echo htmlspecialchars($recette['nom']); ?>" required>
         </div>
-        <div>
-            <label for="ingredients">Ingrédients :</label>
-            <textarea id="ingredients" name="ingredients" required><?php echo htmlspecialchars($recette['ingredients']); ?></textarea>
+        <div id="ingredients-container">
+            <label>Ingrédients :</label>
+            <?php
+            $ingredients = json_decode($recette['ingredients'], true);
+            if (is_array($ingredients)) {
+                foreach ($ingredients as $index => $ingredient) {
+                    echo '<div class="ingredient-entry">';
+                    echo '<input type="text" name="ingredients[]" value="' . htmlspecialchars($ingredient) . '">';
+                    
+                    echo '</div>';
+                }
+            }
+            ?>
+            <button type="button" id="add-ingredient">Ajouter un ingrédient</button>
         </div>
         <div>
             <label for="instructions">Instructions :</label>
@@ -42,5 +54,7 @@
             <button type="submit" class="btn btn-primary">Mettre à jour</button>
         </div>
     </form>
-</div>
-<?php include "view/footer.php"; ?>
+  </section>
+</main>
+<script src="../../public/js/addRecette.js"></script>
+<?php include "../view/footer.php";?>

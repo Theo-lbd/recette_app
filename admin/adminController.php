@@ -134,7 +134,9 @@ class AdminController {
             // Récupération du chemin de l'ancienne image depuis la base de données
             $recetteExistante = $this->recetteModel->getRecetteById($id);
             $image_path = $recetteExistante['image_path'] ?? null;
-    
+            $ingredients = array_filter($_POST['ingredients'], function($ingredient) {
+                return !empty(trim($ingredient));
+            });
             // Traitement de la nouvelle image téléchargée
             if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
                 $image = $_FILES['image'];

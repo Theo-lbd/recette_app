@@ -147,12 +147,10 @@ class RecetteController {
      */    
     public function updateRecette() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Vérification du jeton CSRF
             if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
                 die('Erreur de sécurité: jeton CSRF non valide.');
             }
     
-            // Récupérer l'ID de la recette
             $id = $_POST['id'] ?? null;
             $recetteExistante = $this->Model->getRecetteById($id);
             if (!$recetteExistante || ($_SESSION['user_id'] != $recetteExistante['user_id'] && !$_SESSION['is_admin'])) {
@@ -160,16 +158,19 @@ class RecetteController {
                 exit;
             }
     
-            // Récupérer et valider les données mises à jour
             $nom = htmlspecialchars($_POST['nom'] ?? '');
-            $ingredients = isset($_POST['ingredients']) ? array_map('htmlspecialchars', $_POST['ingredients']) : [];
-            $ingredientsJson = json_encode($ingredients);
+            
+            $ingredients = array_filter($_POST['ingredients'], function($ingredient) {
+                return !empty(trim($ingredient));
+            });
+            $ingredients = array_map('htmlspecialchars', $ingredients);
+            $ingredientsJson = json_encode(array_values($ingredients)); 
+            
             $instructions = htmlspecialchars($_POST['instructions'] ?? '');
             $prep_time = htmlspecialchars($_POST['prep_time'] ?? '');
             $serving_size = htmlspecialchars($_POST['serving_size'] ?? '');
             $category = htmlspecialchars($_POST['category'] ?? '');
     
-            // Initialiser le tableau d'erreurs
             $errors = [];
     
             // Validation pour le nom
@@ -206,19 +207,17 @@ class RecetteController {
             }
     
             // Gestion et validation de l'image téléchargée
-            $image_path = $recetteExistante['image_path']; // Conserver le chemin existant si aucune nouvelle image n'est fournie
+            $image_path = $recetteExistante['image_path'];
             if ($image && $image['tmp_name']) {
-                // Assurez-vous que le fichier est une image
+                // s'assure le fichier est une image
                 if (getimagesize($image['tmp_name']) === false) {
                     $errors[] = "Le fichier doit être une image.";
                 }
     
-                // Vérifiez la taille du fichier (exemple : limite à 5MB)
                 if ($image['size'] > 5000000) {
                     $errors[] = "L'image ne doit pas dépasser 5MB.";
                 }
                 
-                // Déplacez l'image téléchargée vers le nouveau chemin
                 if (!move_uploaded_file($image['tmp_name'], $new_image_path)) {
                     $errors[] = "Erreur lors du téléchargement de l'image.";
                 } else {
@@ -226,7 +225,6 @@ class RecetteController {
                 }
             }
     
-            // Si aucune erreur, mettre à jour la recette dans la base de données
             if (empty($errors)) {
                 if ($this->Model->updateRecette($id, $nom, $ingredientsJson, $instructions, $image_path, $prep_time, $serving_size, $category)) {
                     header("Location: index.php?action=detail&id=" . $id);
@@ -235,9 +233,8 @@ class RecetteController {
                     $errors[] = 'Erreur lors de la mise à jour de la recette.';
                 }
             }
-    
-            // S'il y a des erreurs, réaffichez le formulaire avec les messages d'erreur
-            include "view/editRecette.php"; // Inclure la vue avec les données actuelles
+
+            include "view/editRecette.php"; 
         }
     }
 
