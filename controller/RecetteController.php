@@ -556,12 +556,20 @@ class RecetteController {
         $messages = $this->messageModel->getAllMessagesByUserId($userId);
     
         foreach ($messages as $key => $message) {
+            // Décoder les entités HTML dans le message
+            $messages[$key]['message'] = html_entity_decode($message['message']);
+    
             $replies = $this->messageModel->getRepliesForMessage($message['id']);
+            foreach ($replies as $replyKey => $reply) {
+                // Décoder les entités HTML dans chaque réponse
+                $replies[$replyKey]['reply'] = html_entity_decode($reply['reply']);
+            }
             $messages[$key]['replies'] = $replies;
         }
     
         include 'view/showMessages.php'; 
     }
+    
     
     public function showPolitiqueDeConfidentialite() {
         include 'view/politiqueConfidentialite.php';

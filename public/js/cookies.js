@@ -1,15 +1,20 @@
-window.onload = function() {
-    var acceptButton = document.getElementById("acceptCookieConsent");
-    var consentContainer = document.getElementById("cookieConsentContainer");
+document.addEventListener('DOMContentLoaded', () => {
+    const consentContainer = document.querySelector('.cookie-consent-container');
+    const acceptButton = document.getElementById("acceptCookieConsent");
 
-    // Vérifier si l'utilisateur a déjà accepté les cookies
+    // Vérifie si l'utilisateur a déjà accepté les cookies
     if (!getCookie("cookiesAccepted")) {
-        consentContainer.style.display = "block";
+        // Affiche la modale après un délai pour s'assurer que la page est chargée
+        setTimeout(() => {
+            consentContainer.style.transform = 'translateY(0)'; // Fait apparaître la modale
+            consentContainer.style.opacity = '1';
+        }, 1000);
     }
 
-    acceptButton.onclick = function() {
+    acceptButton.onclick = () => {
         setCookie("cookiesAccepted", "true", 365); // Enregistrer le cookie pour 1 an
-        consentContainer.style.display = "none";
+        consentContainer.style.transform = 'translateY(100%)'; // Fait disparaître la modale
+        consentContainer.style.opacity = '0';
     };
 
     function setCookie(name, value, days) {
@@ -32,23 +37,4 @@ window.onload = function() {
         }
         return null;
     }
-};
-
-document.addEventListener('DOMContentLoaded', () => {
-    const consentContainer = document.querySelector('.cookie-consent-container');
-    const acceptButton = consentContainer.querySelector('.button');
-  
-    setTimeout(() => {
-      consentContainer.classList.add('active');
-    }, 1000);
-  
-    acceptButton.addEventListener('click', () => {
-      consentContainer.classList.remove('active');
-  
-      setTimeout(() => {
-        consentContainer.style.display = 'none';
-      }, 500); 
-    });
-  });
-  
-  
+});
